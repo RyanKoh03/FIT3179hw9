@@ -4,89 +4,9 @@
   <script src="https://cdn.jsdelivr.net/npm/vega@5.25.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.15.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.22.2"></script>
+  <script src="map.js"></script>
 </head>
 <body>
-  <div id="vis"/>
-  <script>
-    const spec = {
-  {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title":"what am i doing",
-    "width": 800,
-    "height": 400,
-    "projection": {"type": "equalEarth"},
-    "layer": [
-        {
-            "data" : {
-                "url": "https://raw.githubusercontent.com/RyanKoh03/FIT3179A2/main/ne_110m_ocean%20(1).json",
-                "format": {
-                    "type" : "topojson",
-                    "feature" : "ne_110m_ocean"
-                }
-            },
-            "mark":{
-                "type": "geoshape",
-                "fill": "skyblue"
-            }
-        },
-        {
-            "data" : {
-                "url": "https://raw.githubusercontent.com/RyanKoh03/FIT3179A2/main/ne_110m_graticules_30.json",
-                "format": {
-                    "type" : "topojson",
-                    "feature" : "ne_110m_graticules_30"
-                }
-            },
-            "mark":{
-                "type": "geoshape",
-                "fill": "null",
-                "stroke":"lightgray"
-            }
-        },
-        {
-            "data" : {
-                "url": "https://raw.githubusercontent.com/RyanKoh03/FIT3179A2/main/ne_110m_admin_0_countries.json",
-                "format": {
-                    "type" : "topojson",
-                    "feature" : "ne_110m_admin_0_countries"
-                }
-            },
-            "mark":{
-                "type":"geoshape",
-                "stroke":"white"
-            },
-            "transform": [
-                {
-                    "lookup": "properties.NAME",
-                    "from":{
-                        "data":{
-                            "url": "https://raw.githubusercontent.com/RyanKoh03/FIT3179A2/main/global_emissions_cleaned.csv"
-                        },
-                        "key":"Country",
-                        "fields":["Coal"]
-                    }
-                }
-            ],
-            "encoding": {
-                "color":{
-                    "field":"Coal",
-                    "type":"quantitative",
-                    "title":"Coal consumption",
-                    "scale":{
-                        "type":"threshold",
-                        "domain":[1000,2000,3000,4000]
-                    }
-                },
-                "tooltip": [
-                    {"field": "properties.NAME", "type": "nominal", "title": "Country"},
-                    {"field": "Infant mortality", "type": "quantitative"}
-                  ]
-            }
-        }
-    ],
-  "config":{}
-  };
-    vegaEmbed("#vis", spec, {mode: "vega-lite"}).then(console.log).catch(console.warn);
-  </script>
+    <div id="map"></div>
 </body>
 </html>
