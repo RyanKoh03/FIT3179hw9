@@ -1,27 +1,13 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "coal usage",
   "width": 800,
-  "height": 400,
+  "height": 450,
+  "title": "World's Infant Mortality",
   "projection": {"type": "equalEarth"},
   "layer": [
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/RyanKoh03/FIT3179A2/main/ne_110m_ocean%20(1).json",
-        "format": {"type": "topojson", "feature": "ne_110m_ocean"}
-      },
-      "mark": {"type": "geoshape", "fill": "skyblue"}
-    },
-    {
-      "data": {
-        "url": "https://raw.githubusercontent.com/RyanKoh03/FIT3179A2/main/ne_110m_graticules_30.json",
-        "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
-      },
-      "mark": {"type": "geoshape", "fill": "null", "stroke": "lightgray"}
-    },
-    {
-      "data": {
-        "url": "https://raw.githubusercontent.com/RyanKoh03/FIT3179A2/main/ne_110m_admin_0_countries.json",
+        "url": "https://raw.githubusercontent.com/RyanKoh03/FIT3179hw9/main/ne_110m.json",
         "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
       },
       "mark": {"type": "geoshape", "stroke": "white"},
@@ -30,19 +16,18 @@
           "lookup": "properties.NAME",
           "from": {
             "data": {
-              "url": "https://raw.githubusercontent.com/RyanKoh03/FIT3179A2/main/global_emissions_cleaned.csv"
+              "url": "https://raw.githubusercontent.com/RyanKoh03/FIT3179hw9/main/world-data-2023.csv"
             },
             "key": "Country",
-            "fields": ["Coal"]
+            "fields": ["Infant mortality"]
           }
         }
       ],
       "encoding": {
         "color": {
-          "field": "Coal",
+          "field": "Infant mortality",
           "type": "quantitative",
-          "title": "Coal consumption",
-          "scale": {"type": "threshold", "domain": [1000, 2000, 3000, 4000]}
+          "scale": {"scheme": "blues"}
         },
         "tooltip": [
           {"field": "properties.NAME", "type": "nominal", "title": "Country"},
@@ -50,6 +35,5 @@
         ]
       }
     }
-  ],
-  "config": {}
+  ]
 }
